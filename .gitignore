@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling output
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Local data / secrets
+.env
+*.db
+*.sqlite
+*.sqlite3
+.pgdata/
+
+# Editors / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# .NET artefacts (never expected here, but never committed either)
+bin/
+obj/
