@@ -118,7 +118,8 @@ class MatchingService:
         match.prompt_version = explanation.prompt_version
         match.llm_provider = explanation.provider
         match.llm_model = explanation.model
-        match.updated_at = utcnow()
+        if match.created_at is not None:  # new rows get both timestamps on insert
+            match.updated_at = utcnow()
 
     # ------------------------------------------------------------------ analyze
     async def analyze(
