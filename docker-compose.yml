@@ -1,0 +1,50 @@
+# Local stack: API + PostgreSQL 16 with pgvector. Migrations run once before the API starts.
+#   cp .env.example .env   # then set JWT_SECRET (>= 32 chars)
+#   docker compose up --build
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-matching}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-matching-local-only}
+      POSTGRES_DB: ${POSTGRES_DB:-resume_matching}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: .env
+    environment: &db_env
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-matching}:${POSTGRES_PASSWORD:-matching-local-only}@db:5432/${POSTGRES_DB:-resume_matching}
+      DB_CREATE_ALL: "false"
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: .env
+    environment:
+      <<: *db_env
+      APP_ENV: ${APP_ENV:-development}
+    ports:
+      - "8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  pgdata:
