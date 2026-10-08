@@ -14,7 +14,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from resume_matching.ai.contracts import build_facts
 from resume_matching.ai.explanation import ExplanationResult, template_result
-from resume_matching.ai.usage import usage_scope
+from resume_matching.ai.usage import UsageRecord, usage_scope
 from resume_matching.core.errors import NotFoundError
 from resume_matching.db.models import Job, MatchResult, Resume, User
 from resume_matching.db.types import utcnow
@@ -170,17 +170,11 @@ class MatchingService:
         return match, existing is None
 
     async def _explain(
-        self, computation: MatchComputation, user: User, match_id: str | None
-    ) -> ExplanationResult:
+        self, computation: MatchComputation
+    ) -> tuple[ExplanationResult, list[UsageRecord]]:
         with usage_scope() as records:
             result = await self.c.explainer.generate(build_facts(computation, self.c.taxonomy))
-        self._pending_usage = records
-        if match_id is not None:
-            self.usage.add_records(records, user_id=user.id, match_id=match_id)
-            self._pending_usage = []
-        return result
-
-    _pending_usage: list = []
+        return result, records
 
     async def get(self, match_id: str) -> MatchResult:
         match = await self.matches.get(match_id)

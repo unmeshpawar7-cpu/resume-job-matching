@@ -13,7 +13,7 @@
 #
 # Matching is per skill and may overlap: "SQL Server" yields both "SQL Server" and "SQL",
 # "Azure Functions" yields both "Azure Functions" and "Azure".
-version: "2026.10.1"
+version: "2026.10.2"
 skills:
   # --- Languages -------------------------------------------------------------------------
   - {name: Python, category: language, aliases: [python3, python 3]}
@@ -166,7 +166,7 @@ skills:
   - {name: Clean Architecture, category: architecture, aliases: [onion architecture, hexagonal architecture], related: [Domain-Driven Design, SOLID]}
   - {name: CQRS, category: architecture, related: [MediatR, Event-Driven Architecture]}
   - {name: Design Patterns, category: architecture, aliases: [gof patterns, software design patterns], related: [SOLID]}
-  - {name: SOLID, category: architecture, aliases: [solid principles], related: [Design Patterns, Clean Architecture]}
+  - {name: SOLID, category: architecture, name_case_sensitive: true, aliases: [solid principles], related: [Design Patterns, Clean Architecture]}
   - {name: System Design, category: architecture, aliases: [distributed systems, scalable systems, high availability], related: [Microservices]}
   - {name: Kafka, category: data, aliases: [apache kafka, kafka streams, confluent kafka], related: [RabbitMQ, Event-Driven Architecture, Apache Flink]}
   - {name: RabbitMQ, category: backend, aliases: [rabbit mq, amqp], related: [Kafka, Azure Service Bus, Celery]}
