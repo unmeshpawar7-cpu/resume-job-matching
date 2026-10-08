@@ -83,7 +83,7 @@ class ScoringSettings(BaseSettings):
         return hashlib.sha256(payload).hexdigest()[:8]
 
     def scoring_version(self) -> str:
-        """Algorithm version + config fingerprint, e.g. ``1.0.0+3fa9c1d2`` (semver build metadata)."""
+        """Algorithm version + config fingerprint, e.g. ``1.0.0+3fa9c1d2`` (semver build)."""
         return f"{SCORING_ALGORITHM_VERSION}+{self.fingerprint()}"
 
 
