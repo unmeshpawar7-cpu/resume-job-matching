@@ -1,0 +1,7 @@
+{
+  "title": "Data Platform Engineer",
+  "description": "You will build and run the batch and streaming data platform.\n\nRequirements:\n- 3+ years of data engineering experience.\n- Python and SQL.\n- Apache Spark and Apache Airflow in production.\n- A cloud data warehouse such as Snowflake or BigQuery.\n\nPreferred:\n- dbt, Kafka, Terraform.",
+  "requiredSkills": ["Python", "SQL", "Apache Spark", "Apache Airflow"],
+  "niceToHaveSkills": ["dbt", "Kafka", "Terraform", "Snowflake"],
+  "minYears": 3
+}

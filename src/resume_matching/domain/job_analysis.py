@@ -187,7 +187,15 @@ def analyze_job(
             if not line_skills:
                 continue
         heading_label = line.split(":", 1)[0] if ":" in line else ""
-        if heading_label and _cue_of(heading_label) and len(heading_label.split()) <= 4:
+        is_bullet = line.lstrip().startswith(("- ", "* "))
+        # "Nice to have: Kafka" on its own line opens a block; inside a bullet the label
+        # only applies to that bullet (handled by the clause cue below).
+        if (
+            not is_bullet
+            and heading_label
+            and _cue_of(heading_label)
+            and len(heading_label.split()) <= 4
+        ):
             block = _cue_of(heading_label)  # "Nice to have: Kafka" also opens a block
         for clause in filter(None, (c.strip() for c in _CLAUSE_SPLIT.split(line))):
             years = _years_in(clause)

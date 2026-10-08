@@ -1,0 +1,5 @@
+{
+  "title": ".NET Backend Developer",
+  "description": "Join our platform team building cloud services on Azure.\n\nWhat you'll need:\n- 4+ years of experience with C# and .NET (ASP.NET Core Web API).\n- Entity Framework Core and SQL Server, including query tuning in T-SQL.\n- Messaging with Azure Service Bus or RabbitMQ.\n- Unit testing with xUnit; clean, SOLID code.\n\nNice to have:\n- Docker and Kubernetes.\n- Experience with CQRS and Domain-Driven Design is a plus.\n- Azure DevOps pipelines.",
+  "criticalSkills": ["C#", ".NET"]
+}

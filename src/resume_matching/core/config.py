@@ -40,6 +40,8 @@ class ScoringSettings(BaseSettings):
 
     #: Credit for a required skill satisfied only by a *related* skill (e.g. Flask for FastAPI).
     related_skill_credit: float = Field(0.5, ge=0, le=1)
+    #: Relative weight of a ``critical`` (must-have) skill inside required-skill coverage.
+    critical_skill_weight: float = Field(2.0, ge=1)
 
     #: Experience curve: ratio r = candidate_years / min_years.
     experience_meets_score: float = Field(90.0, ge=0, le=100)
@@ -78,13 +80,17 @@ class ScoringSettings(BaseSettings):
             + self.weight_semantic
         )
 
-    def fingerprint(self) -> str:
-        payload = json.dumps(self.model_dump(), sort_keys=True).encode()
+    def fingerprint(self, *context: str) -> str:
+        payload = json.dumps([self.model_dump(), list(context)], sort_keys=True).encode()
         return hashlib.sha256(payload).hexdigest()[:8]
 
-    def scoring_version(self) -> str:
-        """Algorithm version + config fingerprint, e.g. ``1.0.0+3fa9c1d2`` (semver build)."""
-        return f"{SCORING_ALGORITHM_VERSION}+{self.fingerprint()}"
+    def scoring_version(self, embedding_model: str = "", taxonomy_version: str = "") -> str:
+        """Algorithm version + fingerprint of the weights, the embedding model and the
+        taxonomy version, e.g. ``1.0.0+3fa9c1d2`` (semver build metadata). Any change to
+        an input that can move a score yields a new version, so results are never reused
+        across incompatible configurations."""
+        fp = self.fingerprint(embedding_model, taxonomy_version)
+        return f"{SCORING_ALGORITHM_VERSION}+{fp}"
 
 
 class Settings(BaseSettings):

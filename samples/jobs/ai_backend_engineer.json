@@ -1,0 +1,5 @@
+{
+  "title": "Senior AI Backend Engineer (Python/FastAPI)",
+  "description": "We are building LLM-powered products for recruiting teams and need a senior backend engineer to own our Python services.\n\nResponsibilities:\n- Design and operate async REST APIs in FastAPI.\n- Build retrieval-augmented generation (RAG) pipelines on PostgreSQL with pgvector.\n- Integrate LLM providers (OpenAI API, Anthropic API) with retries, timeouts and cost controls.\n\nRequirements:\n- 5+ years of professional backend engineering experience.\n- Must have: Python and FastAPI.\n- Strong PostgreSQL and SQLAlchemy skills; Docker and CI/CD with GitHub Actions.\n- Experience with LLMs, embeddings and prompt engineering.\n- Testing discipline with pytest.\n\nNice to have:\n- Kubernetes, Terraform, Redis.\n- Experience with Kafka or other event streaming is a plus.",
+  "criticalSkills": ["Python", "FastAPI"]
+}
