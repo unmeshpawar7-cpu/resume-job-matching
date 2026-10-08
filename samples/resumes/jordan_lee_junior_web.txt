@@ -1,0 +1,24 @@
+Jordan Lee
+Junior Web Developer
+Austin, TX | jordan.lee@example.com | 555-201-7788
+
+About Me
+Junior web developer with about 2 years of professional experience building responsive websites with JavaScript, React and Node.js. Eager to grow into backend work.
+
+Skills: JavaScript, TypeScript, React, Next.js, Node.js, Express.js, HTML, CSS, Tailwind CSS, Git, REST APIs, Jest
+
+Experience
+Web Developer (contract), Pixel & Pine Studio (fictional) 04/2025 - Present
+- Build responsive marketing sites with Next.js and Tailwind CSS.
+- Created a small Express.js REST API for a booking form backed by MongoDB.
+
+Front-End Intern, Brightside Agency (fictional) 06/2024 - 12/2024
+- Implemented React components and wrote Jest unit tests.
+
+Projects
+- Personal portfolio built with React and deployed with GitHub Actions.
+- Weather dashboard (JavaScript, REST API integration).
+
+Education
+Full-Stack Web Development Bootcamp, 2023 - 2024
+B.A. Graphic Design, 2019 - 2023

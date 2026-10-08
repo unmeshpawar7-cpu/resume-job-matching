@@ -1,0 +1,28 @@
+SOFIA ALVAREZ
+Data Engineer
+Madrid, Spain | sofia.alvarez@example.com | +34 600 123 456
+
+PROFILE
+Data engineer with 8 years of experience designing batch and streaming pipelines. Python and SQL every day; Spark, Airflow, dbt and Snowflake in production.
+
+EXPERIENCE
+Senior Data Engineer - Atlas Mobility (fictional)
+2022 – Present
+- Own the Kafka to Spark Structured Streaming to Delta Lake pipelines on Databricks (AWS) processing 40M events/day.
+- Migrated 120 Airflow DAGs to a modular dbt + Snowflake setup with data quality checks (Great Expectations).
+- Built internal Python libraries for idempotent backfills; added CI with GitHub Actions and Docker.
+
+Data Engineer - Quill Insurance Group (fictional)
+2019 – 2022
+- Built ETL pipelines in Python and SQL (PostgreSQL, Redshift); dimensional modeling for finance reporting.
+- Exposed curated datasets through a small Flask REST API used by analysts.
+
+BI Developer - Harbor Bank (fictional)
+2018 – 2019
+- Power BI dashboards and T-SQL reporting on SQL Server.
+
+SKILLS
+Python, SQL, Apache Spark, Kafka, Airflow, dbt, Snowflake, Databricks, Delta Lake, AWS, Docker, Terraform, PostgreSQL, Data Modeling
+
+EDUCATION
+B.Sc. Statistics, Universidad Complutense de Madrid

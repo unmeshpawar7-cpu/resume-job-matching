@@ -1,0 +1,40 @@
+ROHAN DESHPANDE
+Senior .NET Backend Developer
+Pune, India | rohan.deshpande@example.com | +91 98765 43210 | linkedin.com/in/rohan-deshpande-example
+
+PROFESSIONAL SUMMARY
+Backend developer with 9 years of experience building ASP.NET Core Web APIs and microservices on Azure. Strong in C#, Entity Framework Core, SQL Server and clean architecture. Comfortable owning services from design to production.
+
+TECHNICAL SKILLS
+Languages: C#, T-SQL, TypeScript
+Frameworks: ASP.NET Core, Entity Framework Core, MediatR, SignalR, xUnit
+Cloud & DevOps: Azure App Service, Azure Functions, Azure Service Bus, Azure DevOps, Docker
+Databases: SQL Server, Redis, Cosmos DB
+Practices: Clean Architecture, CQRS, Domain-Driven Design, REST APIs, Unit Testing
+
+WORK EXPERIENCE
+Senior Software Engineer - Northwind Logistics (fictional)
+Jan 2022 – Present
+- Led the migration of a monolithic .NET Framework order system to ASP.NET Core 8 microservices on Azure App Service.
+- Designed event-driven integrations with Azure Service Bus; reduced order-processing latency by 35%.
+- Introduced CQRS with MediatR and Clean Architecture across 6 services; mentored 4 developers.
+- Tuned SQL Server queries and indexes (T-SQL), cutting p95 report time from 9s to 1.2s.
+
+Software Engineer - Contoso Retail Systems (fictional)
+Jun 2018 – Dec 2021
+- Built REST APIs with ASP.NET Core and Entity Framework Core for an e-commerce platform.
+- Implemented real-time order tracking with SignalR and Redis caching.
+- Wrote xUnit test suites and set up CI/CD pipelines in Azure DevOps.
+
+Junior Developer - Fabrikam Software (fictional)
+Jul 2017 – May 2018
+- Maintained ASP.NET MVC applications and SQL Server stored procedures.
+
+EDUCATION
+B.E. Computer Engineering, University of Pune, 2013 – 2017
+
+CERTIFICATIONS
+- Microsoft Certified: Azure Developer Associate (AZ-204)
+
+INTERESTS
+Chess, trekking

@@ -1,0 +1,238 @@
+# Curated skills taxonomy used for deterministic skill extraction.
+#
+# Fields
+#   name                canonical skill name (also matched, case-insensitively, unless
+#                       name_case_sensitive is true)
+#   category            language | backend | frontend | mobile | database | cloud | devops |
+#                       data | ml_ai | architecture | testing | security | practice
+#   aliases             alternative spellings, matched case-insensitively with token
+#                       boundaries ("java" never matches "JavaScript", "c" never matches "C#")
+#   exact_case_aliases  aliases matched case-sensitively (for ambiguous words: "Go", "REST")
+#   related             skills that earn *partial* credit when this one is missing.
+#                       Relations are symmetric; every name must exist in this file.
+#
+# Matching is per skill and may overlap: "SQL Server" yields both "SQL Server" and "SQL",
+# "Azure Functions" yields both "Azure Functions" and "Azure".
+version: "2026.10.1"
+skills:
+  # --- Languages -------------------------------------------------------------------------
+  - {name: Python, category: language, aliases: [python3, python 3]}
+  - {name: Java, category: language, aliases: [java 17, java 21, core java, java se]}
+  - {name: JavaScript, category: language, aliases: [js, ecmascript, es6, javascript es6], related: [TypeScript]}
+  - {name: TypeScript, category: language, aliases: [ts], related: [JavaScript]}
+  - {name: "C#", category: language, aliases: [csharp, c sharp, "c#.net"], related: [.NET, Java]}
+  - {name: "C++", category: language, aliases: [cpp, cplusplus, c plus plus], related: [Rust]}
+  - {name: Go, category: language, name_case_sensitive: true, aliases: [golang], related: [Rust]}
+  - {name: Rust, category: language, name_case_sensitive: true, aliases: [rustlang]}
+  - {name: Kotlin, category: language, related: [Java]}
+  - {name: Swift, category: language, name_case_sensitive: true, related: [iOS]}
+  - {name: Scala, category: language, related: [Java, Apache Spark]}
+  - {name: Ruby, category: language, related: [Ruby on Rails]}
+  - {name: PHP, category: language, aliases: [php8, php 8], related: [Laravel]}
+  - {name: SQL, category: language, aliases: [ansi sql, sql queries], related: [PostgreSQL, MySQL, SQL Server, T-SQL, SQLite, Oracle Database, Snowflake, BigQuery, Redshift]}
+  - {name: T-SQL, category: language, aliases: [tsql, transact-sql], related: [SQL Server]}
+  - {name: Bash, category: language, aliases: [shell scripting, bash scripting, shell scripts], related: [Linux, PowerShell]}
+  - {name: PowerShell, category: language, aliases: [powershell scripting]}
+  - {name: HTML, category: frontend, aliases: [html5]}
+  - {name: CSS, category: frontend, aliases: [css3], related: [SASS, Tailwind CSS]}
+  - {name: Dart, category: language, name_case_sensitive: true, related: [Flutter]}
+
+  # --- .NET ------------------------------------------------------------------------------
+  - {name: .NET, category: backend, aliases: [dotnet, .net core, .net 5, .net 6, .net 7, .net 8, .net framework, dot net], related: ["C#", ASP.NET Core]}
+  - {name: ASP.NET Core, category: backend, aliases: [aspnetcore, asp.net core, asp.net core web api, .net core web api, asp.net web api, web api 2], related: ["C#", .NET, ASP.NET MVC]}
+  - {name: ASP.NET MVC, category: backend, aliases: [asp.net mvc, aspnet mvc], related: [ASP.NET Core]}
+  - {name: Entity Framework Core, category: backend, aliases: [ef core, efcore, entity framework, ef6], related: [Dapper, .NET]}
+  - {name: LINQ, category: backend, related: ["C#"]}
+  - {name: Dapper, category: backend, related: [Entity Framework Core]}
+  - {name: Blazor, category: frontend, related: [ASP.NET Core]}
+  - {name: SignalR, category: backend, related: [WebSockets]}
+  - {name: MediatR, category: backend, related: [CQRS]}
+  - {name: xUnit, category: testing, aliases: [xunit.net], related: [NUnit, Unit Testing]}
+  - {name: NUnit, category: testing, related: [xUnit]}
+
+  # --- Python ecosystem ------------------------------------------------------------------
+  - {name: FastAPI, category: backend, aliases: [fast api], related: [Python, Flask, Django, Pydantic]}
+  - {name: Django, category: backend, related: [Python, Flask, Django REST Framework]}
+  - {name: Django REST Framework, category: backend, aliases: [drf, django rest framework], related: [Django]}
+  - {name: Flask, category: backend, related: [Python, FastAPI]}
+  - {name: Pydantic, category: backend, aliases: [pydantic v2], related: [FastAPI]}
+  - {name: SQLAlchemy, category: backend, aliases: [sqlalchemy 2.0], related: [Alembic, Python]}
+  - {name: Alembic, category: backend, related: [SQLAlchemy]}
+  - {name: Celery, category: backend, related: [RabbitMQ, Redis]}
+  - {name: asyncio, category: backend, aliases: [async python, async/await python], related: [Python]}
+  - {name: pytest, category: testing, aliases: [py.test], related: [Unit Testing, Python]}
+
+  # --- JVM -------------------------------------------------------------------------------
+  - {name: Spring Boot, category: backend, aliases: [springboot, spring framework, spring mvc], related: [Java, Kotlin]}
+  - {name: Hibernate, category: backend, aliases: [jpa], related: [Spring Boot]}
+  - {name: Maven, category: devops, related: [Gradle]}
+  - {name: Gradle, category: devops, related: [Maven]}
+  - {name: JUnit, category: testing, aliases: [junit5, junit 5], related: [Unit Testing]}
+
+  # --- JavaScript ecosystem --------------------------------------------------------------
+  - {name: Node.js, category: backend, aliases: [nodejs, node js], related: [JavaScript, Express.js, NestJS]}
+  - {name: Express.js, category: backend, aliases: [expressjs, express js], related: [Node.js]}
+  - {name: NestJS, category: backend, aliases: [nest.js], related: [Node.js, TypeScript]}
+  - {name: React, category: frontend, name_case_sensitive: true, aliases: [react.js, reactjs, react hooks], related: [Next.js, Vue.js, Angular, JavaScript]}
+  - {name: Next.js, category: frontend, aliases: [nextjs], related: [React]}
+  - {name: Angular, category: frontend, aliases: [angularjs, angular 2+], related: [TypeScript, React]}
+  - {name: Vue.js, category: frontend, aliases: [vue, vuejs, vue 3], related: [React]}
+  - {name: Redux, category: frontend, aliases: [redux toolkit], related: [React]}
+  - {name: jQuery, category: frontend, related: [JavaScript]}
+  - {name: Tailwind CSS, category: frontend, aliases: [tailwind, tailwindcss], related: [CSS]}
+  - {name: SASS, category: frontend, aliases: [scss], related: [CSS]}
+  - {name: Bootstrap, category: frontend, name_case_sensitive: true, related: [CSS]}
+  - {name: Webpack, category: frontend, related: [JavaScript]}
+  - {name: Jest, category: testing, name_case_sensitive: true, related: [Unit Testing, JavaScript]}
+  - {name: Responsive Design, category: frontend, aliases: [responsive web design, mobile-first design], related: [CSS]}
+  - {name: Web Accessibility, category: frontend, aliases: [accessibility, a11y, wcag], related: [HTML]}
+  - {name: WordPress, category: frontend, related: [PHP]}
+  - {name: Laravel, category: backend, related: [PHP]}
+  - {name: Ruby on Rails, category: backend, aliases: [ror], exact_case_aliases: [Rails], related: [Ruby]}
+
+  # --- Mobile ----------------------------------------------------------------------------
+  - {name: React Native, category: mobile, related: [React]}
+  - {name: Flutter, category: mobile, related: [Dart]}
+  - {name: Android, category: mobile, related: [Kotlin]}
+  - {name: iOS, category: mobile, name_case_sensitive: true, related: [Swift]}
+
+  # --- Databases -------------------------------------------------------------------------
+  - {name: PostgreSQL, category: database, aliases: [postgres, postgresql 16, psql], related: [SQL, MySQL, pgvector]}
+  - {name: MySQL, category: database, aliases: [mariadb], related: [SQL, PostgreSQL]}
+  - {name: SQL Server, category: database, aliases: [mssql, ms sql, ms sql server, microsoft sql server, sql server 2019, azure sql], related: [SQL, T-SQL, PostgreSQL]}
+  - {name: Oracle Database, category: database, aliases: [oracle db, oracle 19c, pl/sql, plsql], exact_case_aliases: [Oracle], related: [SQL]}
+  - {name: SQLite, category: database, related: [SQL]}
+  - {name: MongoDB, category: database, aliases: [mongo, mongoose], related: [Cosmos DB, DynamoDB]}
+  - {name: Redis, category: database, aliases: [redis cache, elasticache], related: [Memcached]}
+  - {name: Memcached, category: database, related: [Redis]}
+  - {name: Cassandra, category: database, aliases: [apache cassandra], related: [DynamoDB]}
+  - {name: DynamoDB, category: database, aliases: [amazon dynamodb, dynamo db], related: [MongoDB, AWS]}
+  - {name: Cosmos DB, category: database, aliases: [cosmosdb, azure cosmos db], related: [MongoDB, Azure]}
+  - {name: Elasticsearch, category: database, aliases: [elastic search, opensearch, elk stack], related: [Observability]}
+  - {name: Snowflake, category: data, related: [SQL, BigQuery, Redshift, Data Warehousing]}
+  - {name: BigQuery, category: data, aliases: [google bigquery, big query], related: [Snowflake, GCP]}
+  - {name: Redshift, category: data, aliases: [amazon redshift], related: [Snowflake, AWS]}
+  - {name: Neo4j, category: database, aliases: [cypher], related: [Graph Databases]}
+  - {name: Graph Databases, category: database, aliases: [graph database], related: [Neo4j]}
+  - {name: pgvector, category: ml_ai, aliases: [pg vector], related: [PostgreSQL, Vector Databases]}
+
+  # --- Cloud -----------------------------------------------------------------------------
+  - {name: AWS, category: cloud, aliases: [amazon web services], related: [Azure, GCP]}
+  - {name: Azure, category: cloud, aliases: [microsoft azure], related: [AWS, GCP]}
+  - {name: GCP, category: cloud, aliases: [google cloud, google cloud platform], related: [AWS, Azure]}
+  - {name: AWS Lambda, category: cloud, aliases: [lambda functions], related: [AWS, Azure Functions, Serverless]}
+  - {name: Amazon S3, category: cloud, aliases: [aws s3], exact_case_aliases: [S3], related: [AWS]}
+  - {name: Amazon EC2, category: cloud, aliases: [aws ec2], exact_case_aliases: [EC2], related: [AWS]}
+  - {name: Amazon SQS, category: cloud, aliases: [aws sqs], exact_case_aliases: [SQS], related: [AWS, Azure Service Bus, RabbitMQ]}
+  - {name: AWS Glue, category: data, related: [AWS, ETL]}
+  - {name: Azure Functions, category: cloud, related: [Azure, AWS Lambda, Serverless]}
+  - {name: Azure App Service, category: cloud, aliases: [app service], related: [Azure]}
+  - {name: Azure Service Bus, category: cloud, aliases: [service bus], related: [Azure, RabbitMQ, Amazon SQS]}
+  - {name: Azure DevOps, category: devops, aliases: [azure pipelines, vsts], related: [CI/CD, GitHub Actions]}
+  - {name: Azure AD, category: security, aliases: [entra id, microsoft entra id, azure active directory], related: [OAuth 2.0, Azure]}
+  - {name: Serverless, category: cloud, aliases: [serverless architecture], related: [AWS Lambda, Azure Functions]}
+
+  # --- DevOps / platform -----------------------------------------------------------------
+  - {name: Docker, category: devops, aliases: [dockerfile, dockerfiles, docker compose, docker-compose, dockerized, dockerised, containerization, containerisation], related: [Kubernetes, Podman]}
+  - {name: Podman, category: devops, related: [Docker]}
+  - {name: Kubernetes, category: devops, aliases: [k8s, aks, eks, gke, kubectl], related: [Docker, Helm]}
+  - {name: Helm, category: devops, name_case_sensitive: true, aliases: [helm charts], related: [Kubernetes]}
+  - {name: Terraform, category: devops, aliases: [terraform cloud], related: [Ansible, Bicep, Infrastructure as Code]}
+  - {name: Infrastructure as Code, category: devops, aliases: [iac], related: [Terraform, Bicep, Ansible]}
+  - {name: Bicep, category: devops, aliases: [azure bicep, arm templates], related: [Terraform]}
+  - {name: Ansible, category: devops, related: [Terraform]}
+  - {name: Jenkins, category: devops, related: [CI/CD, GitHub Actions]}
+  - {name: GitHub Actions, category: devops, aliases: [gh actions], related: [CI/CD, GitLab CI, Azure DevOps]}
+  - {name: GitLab CI, category: devops, aliases: [gitlab ci/cd, gitlab pipelines], related: [CI/CD, GitHub Actions]}
+  - {name: CI/CD, category: devops, aliases: [ci cd, continuous integration, continuous delivery, continuous deployment, ci/cd pipelines], related: [GitHub Actions, Jenkins, Azure DevOps]}
+  - {name: Linux, category: devops, aliases: [ubuntu, rhel, debian, unix], related: [Bash]}
+  - {name: Nginx, category: devops, related: [Linux]}
+  - {name: Git, category: devops, aliases: [github, gitlab, bitbucket, git flow]}
+  - {name: Prometheus, category: devops, related: [Grafana, Observability]}
+  - {name: Grafana, category: devops, related: [Prometheus, Observability]}
+  - {name: OpenTelemetry, category: devops, aliases: [otel, open telemetry], related: [Observability]}
+  - {name: Observability, category: practice, aliases: [monitoring and alerting, structured logging, distributed tracing], related: [OpenTelemetry, Prometheus]}
+  - {name: Argo CD, category: devops, aliases: [argocd, gitops], related: [Kubernetes, CI/CD]}
+
+  # --- Architecture & APIs ---------------------------------------------------------------
+  - {name: REST APIs, category: architecture, aliases: [rest api, restful, restful apis, restful services, rest services, web apis], exact_case_aliases: [REST], related: [GraphQL, gRPC, OpenAPI]}
+  - {name: GraphQL, category: architecture, aliases: [apollo graphql], related: [REST APIs]}
+  - {name: gRPC, category: architecture, aliases: [protobuf, protocol buffers], related: [REST APIs]}
+  - {name: OpenAPI, category: architecture, aliases: [swagger, openapi 3], related: [REST APIs]}
+  - {name: WebSockets, category: architecture, aliases: [websocket, web sockets], related: [SignalR]}
+  - {name: Microservices, category: architecture, aliases: [microservice, micro-services, microservices architecture], related: [Event-Driven Architecture, Docker, Domain-Driven Design]}
+  - {name: Event-Driven Architecture, category: architecture, aliases: [event-driven, event driven, event sourcing, pub/sub], related: [Kafka, RabbitMQ, Microservices]}
+  - {name: Domain-Driven Design, category: architecture, aliases: [domain driven design, ddd], related: [Clean Architecture, Microservices]}
+  - {name: Clean Architecture, category: architecture, aliases: [onion architecture, hexagonal architecture], related: [Domain-Driven Design, SOLID]}
+  - {name: CQRS, category: architecture, related: [MediatR, Event-Driven Architecture]}
+  - {name: Design Patterns, category: architecture, aliases: [gof patterns, software design patterns], related: [SOLID]}
+  - {name: SOLID, category: architecture, aliases: [solid principles], related: [Design Patterns, Clean Architecture]}
+  - {name: System Design, category: architecture, aliases: [distributed systems, scalable systems, high availability], related: [Microservices]}
+  - {name: Kafka, category: data, aliases: [apache kafka, kafka streams, confluent kafka], related: [RabbitMQ, Event-Driven Architecture, Apache Flink]}
+  - {name: RabbitMQ, category: backend, aliases: [rabbit mq, amqp], related: [Kafka, Azure Service Bus, Celery]}
+  - {name: Caching, category: architecture, aliases: [distributed caching, cache invalidation], related: [Redis]}
+
+  # --- Security --------------------------------------------------------------------------
+  - {name: OAuth 2.0, category: security, aliases: [oauth, oauth2, openid connect, oidc], related: [JWT, Azure AD]}
+  - {name: JWT, category: security, aliases: [json web token, json web tokens], related: [OAuth 2.0]}
+  - {name: OWASP, category: security, aliases: [owasp top 10, secure coding], related: [OAuth 2.0]}
+
+  # --- Data engineering ------------------------------------------------------------------
+  - {name: Apache Spark, category: data, aliases: [spark, pyspark, spark sql, spark streaming], related: [Databricks, Hadoop, Apache Flink, Scala]}
+  - {name: Apache Airflow, category: data, aliases: [airflow, mwaa], related: [dbt, ETL, Dagster]}
+  - {name: Dagster, category: data, related: [Apache Airflow]}
+  - {name: dbt, category: data, aliases: [dbt core, dbt cloud, data build tool], related: [SQL, Snowflake, Data Modeling]}
+  - {name: Hadoop, category: data, aliases: [hdfs, hive, mapreduce], related: [Apache Spark]}
+  - {name: Databricks, category: data, related: [Apache Spark, Delta Lake]}
+  - {name: Delta Lake, category: data, aliases: [lakehouse], related: [Databricks, Apache Spark]}
+  - {name: Apache Flink, category: data, aliases: [flink], related: [Kafka, Apache Spark]}
+  - {name: ETL, category: data, aliases: [elt, etl pipelines, data pipelines, data pipeline], related: [Apache Airflow, dbt, Data Warehousing]}
+  - {name: Data Modeling, category: data, aliases: [data modelling, dimensional modeling, dimensional modelling, star schema], related: [Data Warehousing, dbt]}
+  - {name: Data Warehousing, category: data, aliases: [data warehouse, data warehouses], related: [Snowflake, Redshift, BigQuery, Data Modeling]}
+  - {name: Data Quality, category: data, aliases: [great expectations, data validation], related: [ETL]}
+  - {name: Pandas, category: data, related: [NumPy, Python, Polars]}
+  - {name: Polars, category: data, related: [Pandas]}
+  - {name: NumPy, category: data, related: [Pandas, Python]}
+  - {name: Power BI, category: data, aliases: [powerbi], related: [Tableau]}
+  - {name: Tableau, category: data, related: [Power BI]}
+
+  # --- ML / AI ---------------------------------------------------------------------------
+  - {name: Machine Learning, category: ml_ai, aliases: [machine-learning], exact_case_aliases: [ML], related: [Deep Learning, scikit-learn, MLOps]}
+  - {name: Deep Learning, category: ml_ai, aliases: [neural networks], related: [PyTorch, TensorFlow, Machine Learning]}
+  - {name: PyTorch, category: ml_ai, aliases: [torch], related: [TensorFlow, Deep Learning]}
+  - {name: TensorFlow, category: ml_ai, aliases: [tf2, tensorflow 2], related: [PyTorch, Keras]}
+  - {name: Keras, category: ml_ai, related: [TensorFlow]}
+  - {name: scikit-learn, category: ml_ai, aliases: [sklearn, scikit learn], related: [Machine Learning, XGBoost]}
+  - {name: XGBoost, category: ml_ai, aliases: [lightgbm, gradient boosting], related: [scikit-learn]}
+  - {name: NLP, category: ml_ai, aliases: [natural language processing, text classification, named entity recognition], related: [LLMs, Hugging Face]}
+  - {name: Computer Vision, category: ml_ai, aliases: [image classification, object detection, opencv], related: [Deep Learning]}
+  - {name: LLMs, category: ml_ai, aliases: [llm, large language models, large language model, generative ai, genai], related: [RAG, Prompt Engineering, OpenAI API, NLP]}
+  - {name: RAG, category: ml_ai, aliases: [retrieval-augmented generation, retrieval augmented generation], related: [LLMs, Vector Databases, Embeddings]}
+  - {name: Prompt Engineering, category: ml_ai, aliases: [prompt design], related: [LLMs]}
+  - {name: LangChain, category: ml_ai, aliases: [langgraph], related: [LlamaIndex, LLMs]}
+  - {name: LlamaIndex, category: ml_ai, aliases: [llama index, llama-index], related: [LangChain, RAG]}
+  - {name: Hugging Face, category: ml_ai, aliases: [huggingface, hugging face transformers], related: [PyTorch, NLP]}
+  - {name: OpenAI API, category: ml_ai, aliases: [openai, azure openai, gpt-4, gpt-4o], related: [LLMs, Anthropic API]}
+  - {name: Anthropic API, category: ml_ai, aliases: [anthropic, claude api], related: [OpenAI API, LLMs]}
+  - {name: Embeddings, category: ml_ai, aliases: [vector embeddings, text embeddings, sentence transformers, sentence-transformers], related: [Vector Databases, RAG]}
+  - {name: Vector Databases, category: ml_ai, aliases: [vector database, vector db, vector store, vector search, faiss, pinecone, weaviate, qdrant, chromadb], related: [pgvector, Embeddings, RAG]}
+  - {name: MLOps, category: ml_ai, aliases: [ml ops, model deployment, model serving], related: [MLflow, Machine Learning]}
+  - {name: MLflow, category: ml_ai, aliases: [ml flow], related: [MLOps]}
+  - {name: Feature Engineering, category: ml_ai, related: [Machine Learning, Pandas]}
+  - {name: Statistics, category: ml_ai, aliases: [statistical modeling, statistical modelling, hypothesis testing], related: [A/B Testing]}
+  - {name: A/B Testing, category: ml_ai, aliases: [ab testing, a/b tests, experimentation], related: [Statistics]}
+  - {name: Model Evaluation, category: ml_ai, aliases: [evals, llm evaluation, model evaluation metrics], related: [Machine Learning, LLMs]}
+
+  # --- Testing & practices ---------------------------------------------------------------
+  - {name: Unit Testing, category: testing, aliases: [unit tests, unit-testing, unit test], related: [TDD, Integration Testing]}
+  - {name: Integration Testing, category: testing, aliases: [integration tests, testcontainers], related: [Unit Testing]}
+  - {name: TDD, category: testing, aliases: [test-driven development, test driven development], related: [Unit Testing]}
+  - {name: Selenium, category: testing, related: [Playwright, Cypress]}
+  - {name: Playwright, category: testing, related: [Selenium, Cypress]}
+  - {name: Cypress, category: testing, related: [Playwright]}
+  - {name: Agile, category: practice, aliases: [agile methodologies, kanban], related: [Scrum]}
+  - {name: Scrum, category: practice, aliases: [sprint planning], related: [Agile]}
+  - {name: Jira, category: practice, aliases: [confluence], related: [Agile]}
+  - {name: Code Review, category: practice, aliases: [code reviews, pull request reviews], related: [Mentoring]}
+  - {name: Mentoring, category: practice, aliases: [mentored, mentorship, coaching engineers], related: [Code Review]}
+  - {name: Performance Optimization, category: practice, aliases: [performance tuning, performance optimisation, query optimization, query optimisation, profiling], related: [Caching]}

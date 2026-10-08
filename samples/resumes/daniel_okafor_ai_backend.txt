@@ -1,0 +1,25 @@
+DANIEL OKAFOR
+Senior Backend Engineer (Python, AI platforms)
+Lagos, Nigeria | daniel.okafor@example.com | +234 801 234 5678
+
+Summary
+Senior backend engineer with 8 years of experience building Python APIs, most recently LLM-powered services. I care about typed, tested and observable systems.
+
+Skills
+Python, FastAPI, Pydantic, SQLAlchemy, Alembic, asyncio, PostgreSQL, pgvector, Redis, Celery, Docker, Kubernetes, AWS, GitHub Actions, OpenAI API, Anthropic API, RAG, LLMs, Prompt Engineering, pytest, OpenTelemetry
+
+Experience
+Senior Backend Engineer, Verdant Labs (fictional) | Feb 2022 – Present
+- Designed an LLM gateway in FastAPI with a provider abstraction (OpenAI, Anthropic), retries, timeouts and per-tenant token budgets.
+- Built a RAG service on PostgreSQL + pgvector with hybrid search and an evaluation suite in pytest.
+- Async Python (asyncio, SQLAlchemy 2.0) services on Kubernetes (EKS) with OpenTelemetry tracing.
+
+Backend Engineer, Tidewater Payments (fictional) | Sep 2019 – Jan 2022
+- REST APIs with Django REST Framework and PostgreSQL; Celery and Redis background jobs.
+- Containerised services with Docker and set up GitHub Actions CI/CD.
+
+Software Developer, Kestrel Systems (fictional) | Jun 2018 – Aug 2019
+- Python and JavaScript internal tools; SQL reporting.
+
+Education
+B.Sc. Computer Science, 2014 – 2018

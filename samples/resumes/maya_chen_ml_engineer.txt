@@ -1,0 +1,28 @@
+MAYA CHEN
+Machine Learning Engineer
+San Francisco, CA | maya.chen@example.com | (555) 013-2468
+
+SUMMARY
+ML engineer with 6 years of experience shipping NLP and LLM-powered features. I build retrieval-augmented generation (RAG) systems, evaluation harnesses and the Python services that serve them.
+
+SKILLS
+Python, PyTorch, scikit-learn, Hugging Face, LangChain, OpenAI API, Embeddings, pgvector, FAISS, FastAPI, Docker, AWS, MLflow, SQL, Pandas
+
+EXPERIENCE
+Machine Learning Engineer, Lumen Health AI (fictional) | Mar 2023 – Present
+- Built a RAG pipeline over 2M clinical documents using embeddings stored in PostgreSQL + pgvector; improved answer precision from 0.61 to 0.83 on an internal eval set.
+- Served models behind FastAPI services in Docker on AWS, with structured logging and latency budgets.
+- Designed LLM evaluation harnesses (model evaluation metrics, regression suites) and prompt engineering guidelines.
+
+Data Scientist, Brightline Analytics (fictional) | Aug 2021 – Feb 2023
+- Trained text classification models with PyTorch and Hugging Face transformers; tracked experiments in MLflow.
+- Built feature engineering pipelines in Pandas and SQL; ran A/B testing for ranking changes.
+
+ML Research Intern, Northbridge University Lab (fictional) | Jun 2020 – Jul 2021
+- Implemented NLP baselines with scikit-learn and PyTorch.
+
+PROJECTS
+- Open-source evaluation toolkit for retrieval systems (Python, pytest, GitHub Actions).
+
+EDUCATION
+M.S. Computer Science (Machine Learning), Northbridge University, 2019 – 2021
