@@ -8,6 +8,35 @@ Explainable resume ↔ job-description matching: a deterministic + semantic scor
 ![FastAPI](https://img.shields.io/badge/FastAPI-async-009688.svg)
 ![PostgreSQL + pgvector](https://img.shields.io/badge/PostgreSQL-pgvector-336791.svg)
 
+[At a glance](#at-a-glance) · [Phases](#project-phases) · [Problem](#problem) · [Architecture](#architecture) · [Features](#key-features) · [API](#api-endpoints) · [AI design](#ai-architecture) · [Security](#security) · [Testing](#testing) · [Run locally](#running-locally) · [Docker](#docker)
+
+## At a glance
+
+| Area | Summary |
+|---|---|
+| **What it does** | Scores how well a resume fits a job description with a reproducible formula and a full evidence breakdown, ranks candidates, and adds a written explanation that never changes the score |
+| **Stack** | Python 3.12 · FastAPI · Pydantic v2 · SQLAlchemy 2 (async) · PostgreSQL 16 + pgvector · Alembic |
+| **AI** | The LLM only narrates computed facts and never sees the resume text; grounding checks reject invented skills or numbers; offline template fallback |
+| **Quality** | 132 tests passing in CI (including pgvector) · 97.0% coverage (lines + branches) · fairness invariance test |
+| **Security & privacy** | JWT + bcrypt · recruiter / admin roles · PII redacted from logs and stored text · cascading delete |
+| **Run it** | `cp .env.example .env && docker compose up --build` → `http://localhost:8000/docs` |
+
+## Project phases
+
+How the project was built, from the problem to a deployable service. Each phase links to the details below.
+
+| # | Phase | What was delivered | Details |
+|---|---|---|---|
+| 1 | **Problem & requirements** | Keyword filters are brittle, and LLM match percentages cannot be reproduced, audited or kept free of personal data | [Problem](#problem) |
+| 2 | **Design** | Deterministic-first scoring, a curated skill taxonomy instead of pure LLM extraction, pgvector; 3 ADRs | [Architecture](#architecture) · [ADRs](docs/adr) |
+| 3 | **Parsing** | Safe uploads (.pdf, .docx, .txt with magic-byte, size and zip-bomb checks), section detection, skills from a ~190-skill taxonomy, experience from date ranges | [Key Features](#key-features) |
+| 4 | **Job analysis** | Critical, required and nice-to-have skills, minimum years and seniority from the job description | [Key Features](#key-features) |
+| 5 | **Scoring & ranking** | Five weighted components with knock-out caps, versioned and idempotent results, batch ranking without LLM calls | [Scoring](docs/scoring.md) |
+| 6 | **AI explanation** | Versioned prompt, structured output, grounding checks, retries, template fallback, cost accounting | [AI Architecture](#ai-architecture) |
+| 7 | **Security & fairness** | JWT roles, PII redaction, rate limits, personal sections excluded from scoring, invariance test | [Security](#security) |
+| 8 | **Testing** | 132 tests in CI including pgvector integration; 97.0% coverage | [Testing](#testing) |
+| 9 | **Delivery** | Multi-stage non-root Docker image, docker compose (db → migrate → api), GitHub Actions | [Docker](#docker) |
+
 ## Problem
 
 Resume screening tools tend to be one of two things. Keyword filters are brittle: they
@@ -342,8 +371,8 @@ docker compose up --build        # db (pgvector/pgvector:pg16) -> migrate (alemb
 ```
 
 The image is multi-stage and runs as a non-root user with a `/health/live` healthcheck.
-Migrations run in a one-shot `migrate` service before the API starts. (The Dockerfile was
-not built in the authoring sandbox, which has no Docker daemon; CI builds it.)
+Migrations run in a one-shot `migrate` service before the API starts. CI builds the image on
+every push.
 
 ## Example API Request
 
@@ -433,3 +462,7 @@ ordered by required-skill coverage. See [docs/scoring.md](docs/scoring.md).
   index pre-selects candidates.
 * **One database for relational data and vectors.** This keeps cascading deletes and the
   privacy story simple. A separate vector DB is avoided until scale demands it (ADR 0003).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
